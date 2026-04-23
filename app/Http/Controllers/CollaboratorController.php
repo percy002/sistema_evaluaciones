@@ -18,7 +18,7 @@ class CollaboratorController extends Controller
     {
         return Inertia::render('collaborators/index', [
             'collaborators' => Collaborator::query()
-                ->select(['id', 'name', 'area', 'position', 'immediate_supervisor', 'created_at'])
+                ->select(['id', 'name', 'position', 'role', 'immediate_supervisor', 'created_at'])
                 ->latest()
                 ->paginate(10)
                 ->withQueryString(),
@@ -38,7 +38,10 @@ class CollaboratorController extends Controller
      */
     public function store(StoreCollaboratorRequest $request): RedirectResponse
     {
-        Collaborator::create($request->validated());
+        $data = $request->validated();
+        $data['area'] = '';
+
+        Collaborator::create($data);
 
         Inertia::flash('toast', ['type' => 'success', 'message' => __('Collaborator created.')]);
 
@@ -54,9 +57,9 @@ class CollaboratorController extends Controller
             'collaborator' => $collaborator->only([
                 'id',
                 'name',
-                'area',
                 'position',
                 'immediate_supervisor',
+                'role',
             ]),
         ]);
     }

@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable(['evaluation_type_id', 'name', 'description', 'sort_order'])]
+#[Fillable(['evaluation_type_id', 'name', 'description', 'sort_order', 'role'])]
 class EvaluationCategory extends Model
 {
     use SoftDeletes;

@@ -14,6 +14,7 @@ type TypeOption = { id: number; name: string };
 export default function EvaluationCategoriesCreate({ types }: { types: TypeOption[] }) {
     const { data, setData, post, processing, errors } = useForm({
         evaluation_type_id: types[0]?.id.toString() ?? '',
+        role: 'ventas',
         name: '',
         description: '',
         sort_order: 0,
@@ -43,6 +44,18 @@ export default function EvaluationCategoriesCreate({ types }: { types: TypeOptio
                                     </SelectContent>
                                 </Select>
                                 <InputError message={errors.evaluation_type_id} />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="role">Role</Label>
+                                <Select value={data.role} onValueChange={(value) => setData('role', value)}>
+                                    <SelectTrigger id="role" className="w-full"><SelectValue /></SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="ventas">Ventas</SelectItem>
+                                        <SelectItem value="operaciones">Operaciones</SelectItem>
+                                        <SelectItem value="ti">TI</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <InputError message={errors.role} />
                             </div>
                             <div className="grid gap-2"><Label htmlFor="name">Name</Label><Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} required /><InputError message={errors.name} /></div>
                             <div className="grid gap-2"><Label htmlFor="description">Description</Label><Input id="description" value={data.description} onChange={(e) => setData('description', e.target.value)} /><InputError message={errors.description} /></div>

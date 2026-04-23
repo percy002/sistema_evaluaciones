@@ -17,9 +17,9 @@ import { index as collaboratorsIndex } from '@/routes/collaborators';
 type CollaboratorPayload = {
     id: number;
     name: string;
-    area: string;
     position: string;
     immediate_supervisor: string;
+    role: string;
 };
 
 export default function CollaboratorsEdit({
@@ -29,9 +29,9 @@ export default function CollaboratorsEdit({
 }) {
     const { data, setData, patch, processing, errors } = useForm({
         name: collaborator.name,
-        area: collaborator.area,
         position: collaborator.position,
         immediate_supervisor: collaborator.immediate_supervisor,
+        role: collaborator.role ?? 'ventas',
     });
 
     const submit = (event: FormEvent<HTMLFormElement>) => {
@@ -71,20 +71,6 @@ export default function CollaboratorsEdit({
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="area">Area</Label>
-                                <Input
-                                    id="area"
-                                    value={data.area}
-                                    onChange={(event) =>
-                                        setData('area', event.target.value)
-                                    }
-                                    required
-                                    placeholder="Sales, Operations, Marketing..."
-                                />
-                                <InputError message={errors.area} />
-                            </div>
-
-                            <div className="grid gap-2">
                                 <Label htmlFor="position">Position</Label>
                                 <Input
                                     id="position"
@@ -96,6 +82,21 @@ export default function CollaboratorsEdit({
                                     placeholder="Travel advisor"
                                 />
                                 <InputError message={errors.position} />
+                            </div>
+
+                            <div className="grid gap-2">
+                                <Label htmlFor="role">Role</Label>
+                                <select
+                                    id="role"
+                                    value={data.role}
+                                    onChange={(event) => setData('role', event.target.value)}
+                                    className="rounded-md border border-input bg-background px-3 py-2 text-sm shadow-sm focus-visible:border-ring focus-visible:ring-ring/50"
+                                >
+                                    <option value="ventas">Ventas</option>
+                                    <option value="operaciones">Operaciones</option>
+                                    <option value="ti">TI</option>
+                                </select>
+                                <InputError message={errors.role} />
                             </div>
 
                             <div className="grid gap-2">

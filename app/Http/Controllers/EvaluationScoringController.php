@@ -61,7 +61,7 @@ class EvaluationScoringController extends Controller
 
         return Inertia::render('evaluation-scoring/create', [
             'evaluation' => $evaluation,
-            'rows' => $this->questionRows(),
+            'rows' => $this->questionRows($evaluation),
             'answers' => $answers,
             'summary' => $summary,
         ]);
@@ -73,6 +73,8 @@ class EvaluationScoringController extends Controller
     public function store(StoreEvaluationScoringRequest $request): RedirectResponse
     {
         $evaluation = Evaluation::query()->findOrFail($request->integer('evaluation_id'));
+
+        $evaluation->update(['general_comment' => $request->validated('general_comment')]);
 
         $this->persistAnswers($evaluation, $request->validated('answers'));
 
@@ -95,7 +97,7 @@ class EvaluationScoringController extends Controller
                 'collaborator:id,name,area,position,immediate_supervisor',
                 'period:id,name,start_date,end_date',
             ]),
-            'rows' => $this->questionRows(),
+            'rows' => $this->questionRows($evaluation),
             'answers' => $evaluation->answers()
                 ->pluck('score', 'evaluation_question_id')
                 ->map(fn ($score) => (int) $score)
@@ -109,6 +111,8 @@ class EvaluationScoringController extends Controller
      */
     public function update(UpdateEvaluationScoringRequest $request, Evaluation $evaluation): RedirectResponse
     {
+        $evaluation->update(['general_comment' => $request->validated('general_comment')]);
+
         $this->persistAnswers($evaluation, $request->validated('answers'));
 
         app(EvaluationCalculationService::class)->calculateAndPersist($evaluation);
@@ -138,13 +142,15 @@ class EvaluationScoringController extends Controller
     /**
      * @return array<int, array<string, mixed>>
      */
-    protected function questionRows(): array
+    protected function questionRows(Evaluation $evaluation): array
     {
+        $role = $this->collaboratorRole($evaluation);
+
         return EvaluationQuestion::query()
             ->with([
                 'competency:id,evaluation_type_id,evaluation_category_id,name',
                 'competency.type:id,name,code',
-                'competency.category:id,name',
+                'competency.category:id,name,role',
             ])
             ->select(['id', 'competency_id', 'statement', 'sort_order'])
             ->get()
@@ -157,9 +163,17 @@ class EvaluationScoringController extends Controller
                         'type_name' => $question->competency?->type?->name,
                         'type_code' => $question->competency?->type?->code,
                         'category' => $question->competency?->category?->name,
+                        'category_role' => $question->competency?->category?->role,
                     ],
                     'sort_order' => $question->sort_order,
                 ];
+            })
+            ->filter(function (array $row) use ($role): bool {
+                if ($row['competency']['type_code'] === 'qualitative') {
+                    return true;
+                }
+
+                return ($row['competency']['category_role'] ?? 'ventas') === $role;
             })
             ->sortBy(function (array $row): array {
                 return [
@@ -170,6 +184,26 @@ class EvaluationScoringController extends Controller
             })
             ->values()
             ->all();
+    }
+
+    protected function collaboratorRole(Evaluation $evaluation): string
+    {
+        $area = mb_strtolower($evaluation->collaborator->area ?? '');
+        $position = mb_strtolower($evaluation->collaborator->position ?? '');
+
+        if (str_contains($area, 'ti') || str_contains($area, 'tecnolog') || str_contains($position, 'ti')) {
+            return 'ti';
+        }
+
+        if (str_contains($area, 'ventas') || str_contains($position, 'ventas')) {
+            return 'ventas';
+        }
+
+        if (str_contains($area, 'operac') || str_contains($position, 'operac')) {
+            return 'operaciones';
+        }
+
+        return 'ventas';
     }
 
     /**

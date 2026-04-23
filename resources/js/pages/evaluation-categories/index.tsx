@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { create as createCategory, index as indexCategory } from '@/routes/evaluation-categories';
 
-type Item = { id: number; name: string; description: string | null; sort_order: number; type: { name: string } | null };
+type Item = { id: number; name: string; description: string | null; sort_order: number; role: string; type: { name: string } | null };
 type Paginated = { data: Item[]; total: number };
 
 export default function EvaluationCategoriesIndex({ evaluationCategories }: { evaluationCategories: Paginated }) {
@@ -28,6 +28,7 @@ export default function EvaluationCategoriesIndex({ evaluationCategories }: { ev
                                 <thead>
                                     <tr className="border-b text-left text-muted-foreground">
                                         <th className="px-3 py-2 font-medium">Type</th>
+                                        <th className="px-3 py-2 font-medium">Role</th>
                                         <th className="px-3 py-2 font-medium">Name</th>
                                         <th className="px-3 py-2 font-medium">Order</th>
                                         <th className="px-3 py-2 text-right font-medium">Actions</th>
@@ -37,6 +38,7 @@ export default function EvaluationCategoriesIndex({ evaluationCategories }: { ev
                                     {evaluationCategories.data.map((item) => (
                                         <tr key={item.id} className="border-b last:border-none">
                                             <td className="px-3 py-3">{item.type?.name ?? 'Tipo no disponible'}</td>
+                                            <td className="px-3 py-3">{item.role === 'ti' ? 'TI' : item.role === 'operaciones' ? 'Operaciones' : 'Ventas'}</td>
                                             <td className="px-3 py-3 font-medium">{item.name}</td>
                                             <td className="px-3 py-3">{item.sort_order}</td>
                                             <td className="px-3 py-3">

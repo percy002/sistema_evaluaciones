@@ -27,6 +27,7 @@ class UpdateEvaluationCategoryRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'sort_order' => ['required', 'integer', 'min:0'],
+            'role' => ['required', 'string', 'in:ventas,operaciones,ti'],
         ];
     }
 }

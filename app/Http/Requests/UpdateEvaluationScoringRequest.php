@@ -25,6 +25,7 @@ class UpdateEvaluationScoringRequest extends FormRequest
         return [
             'answers' => ['required', 'array', 'min:1'],
             'answers.*' => ['required', 'integer', 'between:1,5'],
+            'general_comment' => ['nullable', 'string', 'max:2000'],
         ];
     }
 }

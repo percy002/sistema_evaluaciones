@@ -10,11 +10,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { index as indexCategory } from '@/routes/evaluation-categories';
 
 type TypeOption = { id: number; name: string };
-type Payload = { id: number; evaluation_type_id: number; name: string; description: string | null; sort_order: number };
+type Payload = { id: number; evaluation_type_id: number; name: string; description: string | null; sort_order: number; role: string };
 
 export default function EvaluationCategoriesEdit({ evaluationCategory, types }: { evaluationCategory: Payload; types: TypeOption[] }) {
     const { data, setData, patch, processing, errors } = useForm({
         evaluation_type_id: String(evaluationCategory.evaluation_type_id),
+        role: evaluationCategory.role ?? 'ventas',
         name: evaluationCategory.name,
         description: evaluationCategory.description ?? '',
         sort_order: evaluationCategory.sort_order,
@@ -40,6 +41,18 @@ export default function EvaluationCategoriesEdit({ evaluationCategory, types }: 
                                     <SelectContent>{types.map((type) => <SelectItem key={type.id} value={String(type.id)}>{type.name}</SelectItem>)}</SelectContent>
                                 </Select>
                                 <InputError message={errors.evaluation_type_id} />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="role">Role</Label>
+                                <Select value={data.role} onValueChange={(value) => setData('role', value)}>
+                                    <SelectTrigger id="role" className="w-full"><SelectValue /></SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem value="ventas">Ventas</SelectItem>
+                                        <SelectItem value="operaciones">Operaciones</SelectItem>
+                                        <SelectItem value="ti">TI</SelectItem>
+                                    </SelectContent>
+                                </Select>
+                                <InputError message={errors.role} />
                             </div>
                             <div className="grid gap-2"><Label htmlFor="name">Name</Label><Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} required /><InputError message={errors.name} /></div>
                             <div className="grid gap-2"><Label htmlFor="description">Description</Label><Input id="description" value={data.description} onChange={(e) => setData('description', e.target.value)} /><InputError message={errors.description} /></div>

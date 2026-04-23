@@ -20,7 +20,7 @@ class EvaluationCategoryController extends Controller
         return Inertia::render('evaluation-categories/index', [
             'evaluationCategories' => EvaluationCategory::query()
                 ->with('type:id,name')
-                ->select(['id', 'evaluation_type_id', 'name', 'description', 'sort_order', 'created_at'])
+                ->select(['id', 'evaluation_type_id', 'name', 'description', 'sort_order', 'role', 'created_at'])
                 ->orderBy('sort_order')
                 ->orderByDesc('id')
                 ->paginate(10)
@@ -62,6 +62,7 @@ class EvaluationCategoryController extends Controller
                 'name',
                 'description',
                 'sort_order',
+                'role',
             ]),
             'types' => EvaluationType::query()->select(['id', 'name'])->orderBy('name')->get(),
         ]);

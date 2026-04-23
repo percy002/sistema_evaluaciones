@@ -17,8 +17,8 @@ import {
 type CollaboratorItem = {
     id: number;
     name: string;
-    area: string;
     position: string;
+    role: string;
     immediate_supervisor: string;
     created_at: string;
 };
@@ -50,7 +50,7 @@ export default function CollaboratorsIndex({
                 <div className="flex flex-wrap items-start justify-between gap-4">
                     <Heading
                         title="Collaborators"
-                        description="Manage collaborator records by area and position"
+                        description="Manage collaborator records by role and position"
                     />
 
                     <Button asChild>
@@ -77,10 +77,10 @@ export default function CollaboratorsIndex({
                                             Name
                                         </th>
                                         <th className="px-3 py-2 font-medium">
-                                            Area
+                                            Position
                                         </th>
                                         <th className="px-3 py-2 font-medium">
-                                            Position
+                                            Role
                                         </th>
                                         <th className="px-3 py-2 font-medium">
                                             Immediate supervisor
@@ -101,10 +101,14 @@ export default function CollaboratorsIndex({
                                                 {collaborator.name}
                                             </td>
                                             <td className="px-3 py-3">
-                                                {collaborator.area}
+                                                {collaborator.position}
                                             </td>
                                             <td className="px-3 py-3">
-                                                {collaborator.position}
+                                                {collaborator.role === 'ti'
+                                                    ? 'TI'
+                                                    : collaborator.role === 'operaciones'
+                                                    ? 'Operaciones'
+                                                    : 'Ventas'}
                                             </td>
                                             <td className="px-3 py-3">
                                                 {

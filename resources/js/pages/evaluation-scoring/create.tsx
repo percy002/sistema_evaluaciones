@@ -5,6 +5,7 @@ import InputError from '@/components/input-error';
 import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Textarea } from '@/components/ui/textarea';
 import EvaluationScoringController from '@/actions/App/Http/Controllers/EvaluationScoringController';
 import { index as scoringIndex } from '@/routes/evaluation-scoring';
 
@@ -31,6 +32,7 @@ type EvaluationData = {
     period: {
         name: string;
     };
+    general_comment?: string | null;
 };
 
 type ScoreMap = Record<string, number>;
@@ -167,9 +169,14 @@ export default function EvaluationScoringCreate({
             }));
     }, [rows]);
 
-    const { data, setData, post, processing, errors } = useForm({
+    const { data, setData, post, processing, errors } = useForm<{
+        evaluation_id: number;
+        answers: Record<string, number | ''>;
+        general_comment: string;
+    }>({
         evaluation_id: evaluation.id,
         answers: initialAnswers,
+        general_comment: evaluation.general_comment ?? '',
     });
 
     const submit = (event: FormEvent<HTMLFormElement>) => {
@@ -308,6 +315,19 @@ export default function EvaluationScoringCreate({
                                     </div>
                                 </div>
                             ))}
+
+                            <div className="grid gap-2">
+                                <label htmlFor="general_comment" className="text-sm font-medium text-foreground">
+                                    Comentario del evaluador
+                                </label>
+                                <Textarea
+                                    id="general_comment"
+                                    value={data.general_comment}
+                                    onChange={(event) => setData('general_comment', event.target.value)}
+                                    className="min-h-28"
+                                />
+                                <InputError message={errors.general_comment} />
+                            </div>
 
                             <InputError message={clientError ?? undefined} />
                             <InputError message={errors.answers} />
