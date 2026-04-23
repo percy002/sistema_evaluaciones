@@ -64,12 +64,12 @@ type Report = {
 export default function ReportsShow({ report, summary }: { report: Report; summary: Summary }) {
     return (
         <>
-            <Head title={`Report #${report.id}`} />
+            <Head title={`Reporte #${report.id}`} />
 
             <div className="space-y-6 p-4">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                     <Heading
-                        title={`Report #${report.id}`}
+                        title={`Reporte #${report.id}`}
                         description={`${report.collaborator.name} · ${report.period.name}`}
                     />
                     <Button variant="outline" asChild>
@@ -79,24 +79,24 @@ export default function ReportsShow({ report, summary }: { report: Report; summa
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Evaluation detail</CardTitle>
-                        <CardDescription>General information about the evaluated collaborator.</CardDescription>
+                        <CardTitle>Detalle de la evaluación</CardTitle>
+                        <CardDescription>Información general del colaborador evaluado.</CardDescription>
                     </CardHeader>
                     <CardContent className="grid gap-3 md:grid-cols-2 xl:grid-cols-4 text-sm">
                         <div>
-                            <p className="text-xs text-muted-foreground">Collaborator</p>
+                            <p className="text-xs text-muted-foreground">Colaborador</p>
                             <p className="font-medium">{report.collaborator.name}</p>
                         </div>
                         <div>
-                            <p className="text-xs text-muted-foreground">Area / Position</p>
+                            <p className="text-xs text-muted-foreground">Área / Cargo</p>
                             <p className="font-medium">{report.collaborator.area} / {report.collaborator.position}</p>
                         </div>
                         <div>
-                            <p className="text-xs text-muted-foreground">Immediate supervisor</p>
+                            <p className="text-xs text-muted-foreground">Supervisor inmediato</p>
                             <p className="font-medium">{report.collaborator.immediate_supervisor}</p>
                         </div>
                         <div>
-                            <p className="text-xs text-muted-foreground">Evaluator</p>
+                            <p className="text-xs text-muted-foreground">Evaluador</p>
                             <p className="font-medium">{report.evaluator?.name ?? 'N/A'}</p>
                         </div>
                     </CardContent>
@@ -104,8 +104,8 @@ export default function ReportsShow({ report, summary }: { report: Report; summa
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Scoring summary</CardTitle>
-                        <CardDescription>Automatic calculation by competency and category.</CardDescription>
+                        <CardTitle>Resumen de puntuación</CardTitle>
+                        <CardDescription>Cálculo automático por competencia y categoría.</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <div className="grid gap-4 md:grid-cols-3">
@@ -114,25 +114,25 @@ export default function ReportsShow({ report, summary }: { report: Report; summa
                                 <p className="text-2xl font-semibold">{summary.general.total_score}</p>
                             </div>
                             <div className="rounded-lg border p-3">
-                                <p className="text-xs text-muted-foreground">General average</p>
+                                <p className="text-xs text-muted-foreground">Promedio general</p>
                                 <p className="text-2xl font-semibold">{summary.general.average_score ?? 'N/A'}</p>
                             </div>
                             <div className="rounded-lg border p-3">
-                                <p className="text-xs text-muted-foreground">Answers</p>
+                                <p className="text-xs text-muted-foreground">Respuestas</p>
                                 <p className="text-2xl font-semibold">{summary.general.answers_count}</p>
                             </div>
                         </div>
 
                         <div className="grid gap-4 lg:grid-cols-2">
                             <div className="rounded-lg border">
-                                <div className="border-b px-3 py-2 text-sm font-medium">By category</div>
+                                <div className="border-b px-3 py-2 text-sm font-medium">Por categoría</div>
                                 <div className="overflow-x-auto">
                                     <table className="w-full min-w-120 text-sm">
                                         <thead>
                                             <tr className="border-b text-left text-muted-foreground">
-                                                <th className="px-3 py-2 font-medium">Category</th>
+                                                <th className="px-3 py-2 font-medium">Categoría</th>
                                                 <th className="px-3 py-2 font-medium">Total</th>
-                                                <th className="px-3 py-2 font-medium">Average</th>
+                                                <th className="px-3 py-2 font-medium">Promedio</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -149,14 +149,14 @@ export default function ReportsShow({ report, summary }: { report: Report; summa
                             </div>
 
                             <div className="rounded-lg border">
-                                <div className="border-b px-3 py-2 text-sm font-medium">By competency</div>
+                                <div className="border-b px-3 py-2 text-sm font-medium">Por competencia</div>
                                 <div className="overflow-x-auto">
                                     <table className="w-full min-w-120 text-sm">
                                         <thead>
                                             <tr className="border-b text-left text-muted-foreground">
-                                                <th className="px-3 py-2 font-medium">Competency</th>
+                                                <th className="px-3 py-2 font-medium">Competencia</th>
                                                 <th className="px-3 py-2 font-medium">Total</th>
-                                                <th className="px-3 py-2 font-medium">Average</th>
+                                                <th className="px-3 py-2 font-medium">Promedio</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -182,8 +182,8 @@ export default function ReportsShow({ report, summary }: { report: Report; summa
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Scored questions</CardTitle>
-                        <CardDescription>Detailed scores by question and competency.</CardDescription>
+                        <CardTitle>Preguntas calificadas</CardTitle>
+                        <CardDescription>Puntuaciones detalladas por pregunta y competencia.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="overflow-x-auto">
@@ -191,10 +191,10 @@ export default function ReportsShow({ report, summary }: { report: Report; summa
                                 <thead>
                                     <tr className="border-b text-left text-muted-foreground">
                                         <th className="px-3 py-2 font-medium">#</th>
-                                        <th className="px-3 py-2 font-medium">Question</th>
-                                        <th className="px-3 py-2 font-medium">Competency</th>
-                                        <th className="px-3 py-2 font-medium">Type/Category</th>
-                                        <th className="px-3 py-2 font-medium">Score</th>
+                                        <th className="px-3 py-2 font-medium">Pregunta</th>
+                                        <th className="px-3 py-2 font-medium">Competencia</th>
+                                        <th className="px-3 py-2 font-medium">Tipo/Categoría</th>
+                                        <th className="px-3 py-2 font-medium">Puntaje</th>
                                     </tr>
                                 </thead>
                                 <tbody>

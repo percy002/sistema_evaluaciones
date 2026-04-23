@@ -40,25 +40,25 @@ function formatDate(value: string): string {
 export default function PeriodsIndex({ periods }: { periods: PaginatedPeriods }) {
     return (
         <>
-            <Head title="Periods" />
+            <Head title="Periodos" />
 
             <div className="space-y-6 p-4">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                     <Heading
-                        title="Periods"
-                        description="Manage evaluation periods"
+                        title="Periodos"
+                        description="Gestionar periodos de evaluación con fechas de inicio y fin"
                     />
 
                     <Button asChild>
-                        <Link href={periodsCreate()}>Create period</Link>
+                        <Link href={periodsCreate()}>Crear periodo</Link>
                     </Button>
                 </div>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Period list</CardTitle>
+                        <CardTitle>Lista de periodos</CardTitle>
                         <CardDescription>
-                            {periods.total} periods registered
+                            {periods.total} periodos registrados
                         </CardDescription>
                     </CardHeader>
 
@@ -67,15 +67,15 @@ export default function PeriodsIndex({ periods }: { periods: PaginatedPeriods })
                             <table className="w-full min-w-180 text-sm">
                                 <thead>
                                     <tr className="border-b text-left text-muted-foreground">
-                                        <th className="px-3 py-2 font-medium">Name</th>
+                                        <th className="px-3 py-2 font-medium">Nombre</th>
                                         <th className="px-3 py-2 font-medium">
-                                            Start date
+                                            Fecha de inicio
                                         </th>
                                         <th className="px-3 py-2 font-medium">
-                                            End date
+                                            Fecha de fin
                                         </th>
                                         <th className="px-3 py-2 text-right font-medium">
-                                            Actions
+                                            Acciones
                                         </th>
                                     </tr>
                                 </thead>
@@ -107,7 +107,7 @@ export default function PeriodsIndex({ periods }: { periods: PaginatedPeriods })
                                                                 period.id,
                                                             )}
                                                         >
-                                                            Edit
+                                                            Editar
                                                         </Link>
                                                     </Button>
 
@@ -124,7 +124,7 @@ export default function PeriodsIndex({ periods }: { periods: PaginatedPeriods })
                                                                     processing
                                                                 }
                                                             >
-                                                                Delete
+                                                                Eliminar
                                                             </Button>
                                                         )}
                                                     </Form>
@@ -138,7 +138,7 @@ export default function PeriodsIndex({ periods }: { periods: PaginatedPeriods })
 
                         <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
                             <p>
-                                Showing {periods.from ?? 0} to {periods.to ?? 0}
+                                Mostrando {periods.from ?? 0} a {periods.to ?? 0}
                             </p>
 
                             <div className="flex items-center gap-2">
@@ -180,7 +180,7 @@ export default function PeriodsIndex({ periods }: { periods: PaginatedPeriods })
 PeriodsIndex.layout = {
     breadcrumbs: [
         {
-            title: 'Periods',
+            title: 'Periodos',
             href: periodsIndex(),
         },
     ],

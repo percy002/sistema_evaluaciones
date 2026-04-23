@@ -13,28 +13,28 @@ type Paginated = { data: Item[]; from: number | null; to: number | null; total: 
 export default function EvaluationTypesIndex({ evaluationTypes }: { evaluationTypes: Paginated }) {
     return (
         <>
-            <Head title="Evaluation types" />
+            <Head title="Tipos de evaluación" />
             <div className="space-y-6 p-4">
                 <div className="flex flex-wrap items-start justify-between gap-4">
-                    <Heading title="Evaluation types" description="Manage qualitative and quantitative types" />
+                    <Heading title="Tipos de evaluación" description="Gestionar tipos cualitativos y cuantitativos" />
                     <Button asChild>
-                        <Link href={createType()}>Create type</Link>
+                        <Link href={createType()}>Crear tipo</Link>
                     </Button>
                 </div>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Type list</CardTitle>
-                        <CardDescription>{evaluationTypes.total} types configured</CardDescription>
+                        <CardTitle>Lista de tipos</CardTitle>
+                        <CardDescription>{evaluationTypes.total} tipos configurados</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <div className="overflow-x-auto">
                             <table className="w-full min-w-140 text-sm">
                                 <thead>
                                     <tr className="border-b text-left text-muted-foreground">
-                                        <th className="px-3 py-2 font-medium">Name</th>
-                                        <th className="px-3 py-2 font-medium">Code</th>
-                                        <th className="px-3 py-2 text-right font-medium">Actions</th>
+                                        <th className="px-3 py-2 font-medium">Nombre</th>
+                                        <th className="px-3 py-2 font-medium">Código</th>
+                                        <th className="px-3 py-2 text-right font-medium">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,11 +47,11 @@ export default function EvaluationTypesIndex({ evaluationTypes }: { evaluationTy
                                             <td className="px-3 py-3">
                                                 <div className="flex justify-end gap-2">
                                                     <Button variant="outline" size="sm" asChild>
-                                                        <Link href={EvaluationTypeController.edit(item.id)}>Edit</Link>
+                                                        <Link href={EvaluationTypeController.edit(item.id)}>Editar</Link>
                                                     </Button>
                                                     <Form {...EvaluationTypeController.destroy.form(item.id)}>
                                                         {({ processing }) => (
-                                                            <Button variant="destructive" size="sm" disabled={processing}>Delete</Button>
+                                                            <Button variant="destructive" size="sm" disabled={processing}>Eliminar</Button>
                                                         )}
                                                     </Form>
                                                 </div>
@@ -69,5 +69,5 @@ export default function EvaluationTypesIndex({ evaluationTypes }: { evaluationTy
 }
 
 EvaluationTypesIndex.layout = {
-    breadcrumbs: [{ title: 'Evaluation types', href: indexType() }],
+    breadcrumbs: [{ title: 'Tipos de evaluación', href: indexType() }],
 };
