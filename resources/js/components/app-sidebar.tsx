@@ -1,9 +1,10 @@
 import { Link, usePage } from '@inertiajs/react';
-import { BarChart3, BookOpen, CalendarDays, ClipboardCheck, FolderGit2, LayoutGrid, Users, UserRoundSearch } from 'lucide-react';
+import { BarChart3, BookOpen, CalendarDays, ClipboardCheck, FolderGit2, LayoutGrid, Moon, Sun, Users, UserRoundSearch } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
+import { useAppearance } from '@/hooks/use-appearance';
 import {
     Sidebar,
     SidebarContent,
@@ -41,6 +42,17 @@ const footerNavItems: NavItem[] = [
 
 export function AppSidebar() {
     const { auth } = usePage<{ auth: Auth }>().props;
+    const { resolvedAppearance, updateAppearance } = useAppearance();
+
+    const toggleAppearance = () => {
+        updateAppearance(
+            resolvedAppearance === 'dark' ? 'light' : 'dark',
+        );
+    };
+
+    const ThemeIcon = resolvedAppearance === 'dark' ? Sun : Moon;
+    const themeLabel =
+        resolvedAppearance === 'dark' ? 'Modo claro' : 'Modo oscuro';
 
     const mainNavItems: NavItem[] = [
         {
@@ -123,7 +135,21 @@ export function AppSidebar() {
             </SidebarContent>
 
             <SidebarFooter>
-                {/* <NavFooter items={footerNavItems} className="mt-auto" /> */}
+                <SidebarMenu>
+                    <SidebarMenuItem>
+                        <SidebarMenuButton asChild size="lg">
+                            <button
+                                type="button"
+                                className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                                onClick={toggleAppearance}
+                            >
+                                <ThemeIcon className="h-5 w-5" />
+                                <span>{themeLabel}</span>
+                            </button>
+                        </SidebarMenuButton>
+                    </SidebarMenuItem>
+                </SidebarMenu>
+
                 <NavUser />
             </SidebarFooter>
         </Sidebar>

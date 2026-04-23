@@ -1,5 +1,6 @@
 import { Head, Link, useForm } from '@inertiajs/react';
 import { Fragment, type FormEvent, useMemo, useState } from 'react';
+import { Frown, Laugh, Meh, Smile, SmilePlus } from 'lucide-react';
 import InputError from '@/components/input-error';
 import Heading from '@/components/heading';
 import { Button } from '@/components/ui/button';
@@ -58,11 +59,36 @@ type Summary = {
 };
 
 const scaleOptions = [
-    { value: 1, label: 'Muy bajo' },
-    { value: 2, label: 'Bajo' },
-    { value: 3, label: 'Aceptable' },
-    { value: 4, label: 'Bueno' },
-    { value: 5, label: 'Excelente' },
+    {
+        value: 1,
+        label: 'Muy bajo',
+        icon: Frown,
+        classes: 'border-slate-300 bg-slate-100 text-slate-500 hover:bg-slate-200 peer-checked:border-red-400 peer-checked:bg-red-200 peer-checked:text-red-950',
+    },
+    {
+        value: 2,
+        label: 'Bajo',
+        icon: Meh,
+        classes: 'border-slate-300 bg-slate-100 text-slate-500 hover:bg-slate-200 peer-checked:border-orange-400 peer-checked:bg-orange-200 peer-checked:text-orange-950',
+    },
+    {
+        value: 3,
+        label: 'Aceptable',
+        icon: Smile,
+        classes: 'border-slate-300 bg-slate-100 text-slate-500 hover:bg-slate-200 peer-checked:border-amber-400 peer-checked:bg-amber-200 peer-checked:text-amber-950',
+    },
+    {
+        value: 4,
+        label: 'Bueno',
+        icon: SmilePlus,
+        classes: 'border-slate-300 bg-slate-100 text-slate-500 hover:bg-slate-200 peer-checked:border-emerald-400 peer-checked:bg-emerald-200 peer-checked:text-emerald-950',
+    },
+    {
+        value: 5,
+        label: 'Excelente',
+        icon: Laugh,
+        classes: 'border-slate-300 bg-slate-100 text-slate-500 hover:bg-slate-200 peer-checked:border-sky-400 peer-checked:bg-sky-200 peer-checked:text-sky-950',
+    },
 ];
 
 export default function EvaluationScoringCreate({
@@ -232,29 +258,46 @@ export default function EvaluationScoringCreate({
                                                         </tr>
                                                         {category.competencyGroups.map((group) => (
                                                             group.rows.map((row, index) => (
-                                                                <tr key={row.id} className="border-b last:border-none">
+                                                                <tr
+                                                                    key={row.id}
+                                                                    className="border-b last:border-none hover:bg-slate-400 dark:hover:bg-slate-800 transition-colors"
+                                                                >
                                                                     {index === 0 ? (
                                                                         <td className="px-3 py-3 align-middle font-medium" rowSpan={group.rows.length}>
                                                                             {group.competencyName}
                                                                         </td>
                                                                     ) : null}
                                                                     <td className="px-3 py-3 align-top">{row.statement}</td>
-                                                                    {scaleOptions.map((option) => (
-                                                                        <td key={option.value} className="px-3 py-3 text-center align-top">
-                                                                            <input
-                                                                                type="radio"
-                                                                                name={`score-${row.id}`}
-                                                                                checked={Number(data.answers[String(row.id)]) === option.value}
-                                                                                onChange={() =>
-                                                                                    setData('answers', {
-                                                                                        ...data.answers,
-                                                                                        [String(row.id)]: option.value,
-                                                                                    })
-                                                                                }
-                                                                                className="size-4 accent-primary"
-                                                                            />
-                                                                        </td>
-                                                                    ))}
+                                                                    {scaleOptions.map((option) => {
+                                                                        const OptionIcon = option.icon;
+
+                                                                        return (
+                                                                            <td key={option.value} className="px-3 py-3 text-center align-top">
+                                                                                <div className="mx-auto inline-flex w-full items-center justify-center">
+                                                                                    <input
+                                                                                        id={`score-${row.id}-${option.value}`}
+                                                                                        type="radio"
+                                                                                        name={`score-${row.id}`}
+                                                                                        checked={Number(data.answers[String(row.id)]) === option.value}
+                                                                                        onChange={() =>
+                                                                                            setData('answers', {
+                                                                                                ...data.answers,
+                                                                                                [String(row.id)]: option.value,
+                                                                                            })
+                                                                                        }
+                                                                                        className="peer sr-only"
+                                                                                    />
+                                                                                    <label
+                                                                                        htmlFor={`score-${row.id}-${option.value}`}
+                                                                                        className={`inline-flex cursor-pointer items-center justify-center gap-2 rounded-full border px-3 py-2 text-xs font-semibold transition-colors duration-150 ${option.classes}`}
+                                                                                    >
+                                                                                        <OptionIcon className="h-4 w-4" />
+                                                                                        <span className="sr-only">{option.label}</span>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </td>
+                                                                        );
+                                                                    })}
                                                                 </tr>
                                                             ))
                                                         ))}
