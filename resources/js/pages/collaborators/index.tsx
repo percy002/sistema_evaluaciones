@@ -49,22 +49,22 @@ export default function CollaboratorsIndex({
             <div className="space-y-6 p-4">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                     <Heading
-                        title="Collaborators"
-                        description="Manage collaborator records by role and position"
+                        title="Colaboradores"
+                        description="Gestiona los registros de colaboradores por rol y posición"
                     />
 
                     <Button asChild>
                         <Link href={collaboratorsCreate()}>
-                            Create collaborator
+                            Crear colaborador
                         </Link>
                     </Button>
                 </div>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Collaborator list</CardTitle>
+                        <CardTitle>Lista de colaboradores</CardTitle>
                         <CardDescription>
-                            {collaborators.total} collaborators registered
+                            {collaborators.total} colaboradores registrados
                         </CardDescription>
                     </CardHeader>
 
@@ -74,19 +74,19 @@ export default function CollaboratorsIndex({
                                 <thead>
                                     <tr className="border-b text-left text-muted-foreground">
                                         <th className="px-3 py-2 font-medium">
-                                            Name
+                                            Nombre
                                         </th>
                                         <th className="px-3 py-2 font-medium">
-                                            Position
+                                            Posición
                                         </th>
                                         <th className="px-3 py-2 font-medium">
-                                            Role
+                                            Rol
                                         </th>
                                         <th className="px-3 py-2 font-medium">
-                                            Immediate supervisor
+                                            Supervisor inmediato
                                         </th>
                                         <th className="px-3 py-2 text-right font-medium">
-                                            Actions
+                                            Acciones
                                         </th>
                                     </tr>
                                 </thead>
@@ -127,7 +127,7 @@ export default function CollaboratorsIndex({
                                                                 collaborator.id,
                                                             )}
                                                         >
-                                                            Edit
+                                                            Editar
                                                         </Link>
                                                     </Button>
 
@@ -144,7 +144,7 @@ export default function CollaboratorsIndex({
                                                                     processing
                                                                 }
                                                             >
-                                                                Delete
+                                                                Eliminar
                                                             </Button>
                                                         )}
                                                     </Form>
@@ -158,8 +158,8 @@ export default function CollaboratorsIndex({
 
                         <div className="flex flex-wrap items-center justify-between gap-3 text-sm text-muted-foreground">
                             <p>
-                                Showing {collaborators.from ?? 0} to{' '}
-                                {collaborators.to ?? 0}
+                                Mostrando {collaborators.from ?? 0} a{' '}
+                                {collaborators.to ?? 0} de {collaborators.total} colaboradores
                             </p>
 
                             <div className="flex items-center gap-2">
@@ -201,7 +201,7 @@ export default function CollaboratorsIndex({
 CollaboratorsIndex.layout = {
     breadcrumbs: [
         {
-            title: 'Collaborators',
+            title: 'Colaboradores',
             href: collaboratorsIndex(),
         },
     ],

@@ -73,7 +73,7 @@ export default function ReportsShow({ report, summary }: { report: Report; summa
                         description={`${report.collaborator.name} · ${report.period.name}`}
                     />
                     <Button variant="outline" asChild>
-                        <Link href={reportsIndex()}>Back to reports</Link>
+                        <Link href={reportsIndex()}>Volver a reportes</Link>
                     </Button>
                 </div>
 
@@ -218,5 +218,5 @@ export default function ReportsShow({ report, summary }: { report: Report; summa
 }
 
 ReportsShow.layout = {
-    breadcrumbs: [{ title: 'Reports', href: reportsIndex() }],
+    breadcrumbs: [{ title: 'Reportes', href: reportsIndex() }],
 };

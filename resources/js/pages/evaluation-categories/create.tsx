@@ -27,10 +27,10 @@ export default function EvaluationCategoriesCreate({ types }: { types: TypeOptio
 
     return (
         <>
-            <Head title="Create category" />
+            <Head title="Crear categoría" />
             <div className="space-y-6 p-4">
                 <Card>
-                    <CardHeader><CardTitle>Create category</CardTitle><CardDescription>Add a category under a type.</CardDescription></CardHeader>
+                    <CardHeader><CardTitle>Crear categoría</CardTitle><CardDescription>Agrega una categoría para un tipo.</CardDescription></CardHeader>
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-2">
@@ -57,10 +57,10 @@ export default function EvaluationCategoriesCreate({ types }: { types: TypeOptio
                                 </Select>
                                 <InputError message={errors.role} />
                             </div>
-                            <div className="grid gap-2"><Label htmlFor="name">Name</Label><Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} required /><InputError message={errors.name} /></div>
-                            <div className="grid gap-2"><Label htmlFor="description">Description</Label><Input id="description" value={data.description} onChange={(e) => setData('description', e.target.value)} /><InputError message={errors.description} /></div>
-                            <div className="grid gap-2"><Label htmlFor="sort_order">Order</Label><Input id="sort_order" type="number" value={data.sort_order} onChange={(e) => setData('sort_order', Number(e.target.value))} min={0} required /><InputError message={errors.sort_order} /></div>
-                            <div className="flex flex-wrap gap-2"><Button type="submit" disabled={processing}>Save category</Button><Button variant="outline" asChild><Link href={indexCategory()}>Cancel</Link></Button></div>
+                            <div className="grid gap-2"><Label htmlFor="name">Nombre</Label><Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} required /><InputError message={errors.name} /></div>
+                            <div className="grid gap-2"><Label htmlFor="description">Descripción</Label><Input id="description" value={data.description} onChange={(e) => setData('description', e.target.value)} /><InputError message={errors.description} /></div>
+                            <div className="grid gap-2"><Label htmlFor="sort_order">Orden</Label><Input id="sort_order" type="number" value={data.sort_order} onChange={(e) => setData('sort_order', Number(e.target.value))} min={0} required /><InputError message={errors.sort_order} /></div>
+                            <div className="flex flex-wrap gap-2"><Button type="submit" disabled={processing}>Guardar categoría</Button><Button variant="outline" asChild><Link href={indexCategory()}>Cancelar</Link></Button></div>
                         </form>
                     </CardContent>
                 </Card>

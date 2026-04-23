@@ -47,22 +47,21 @@ export default function UsersEdit({ user }: { user: UserPayload }) {
 
     return (
         <>
-            <Head title="Edit user" />
+            <Head title="Editar usuario" />
 
             <div className="space-y-6 p-4">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Edit user</CardTitle>
+                        <CardTitle>Editar usuario</CardTitle>
                         <CardDescription>
-                            Update user data and role. Leave password empty to
-                            keep the current one.
+                            Actualiza los datos del usuario y rol. Deja la contraseña vacía para mantener la actual.
                         </CardDescription>
                     </CardHeader>
 
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                                <Label htmlFor="name">Nombre</Label>
                                 <Input
                                     id="name"
                                     value={data.name}
@@ -71,13 +70,13 @@ export default function UsersEdit({ user }: { user: UserPayload }) {
                                     }
                                     required
                                     autoFocus
-                                    placeholder="Full name"
+                                    placeholder="Nombre completo"
                                 />
                                 <InputError message={errors.name} />
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Email</Label>
+                                <Label htmlFor="email">Correo electrónico</Label>
                                 <Input
                                     id="email"
                                     type="email"
@@ -86,7 +85,7 @@ export default function UsersEdit({ user }: { user: UserPayload }) {
                                         setData('email', event.target.value)
                                     }
                                     required
-                                    placeholder="user@company.com"
+                                    placeholder="usuario@empresa.com"
                                 />
                                 <InputError message={errors.email} />
                             </div>
@@ -100,14 +99,14 @@ export default function UsersEdit({ user }: { user: UserPayload }) {
                                     }
                                 >
                                     <SelectTrigger id="role" className="w-full">
-                                        <SelectValue placeholder="Select a role" />
+                                        <SelectValue placeholder="Selecciona un rol" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="administrator">
-                                            Administrator
+                                            Administrador
                                         </SelectItem>
                                         <SelectItem value="evaluator">
-                                            Evaluator
+                                            Evaluador
                                         </SelectItem>
                                     </SelectContent>
                                 </Select>
@@ -115,7 +114,7 @@ export default function UsersEdit({ user }: { user: UserPayload }) {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="password">New password</Label>
+                                <Label htmlFor="password">Nueva contraseña</Label>
                                 <PasswordInput
                                     id="password"
                                     value={data.password}
@@ -123,14 +122,14 @@ export default function UsersEdit({ user }: { user: UserPayload }) {
                                         setData('password', event.target.value)
                                     }
                                     autoComplete="new-password"
-                                    placeholder="Leave empty to keep current"
+                                    placeholder="Dejar vacío para mantener la actual"
                                 />
                                 <InputError message={errors.password} />
                             </div>
 
                             <div className="grid gap-2">
                                 <Label htmlFor="password_confirmation">
-                                    Confirm new password
+                                    Confirmar nueva contraseña
                                 </Label>
                                 <PasswordInput
                                     id="password_confirmation"
@@ -142,7 +141,7 @@ export default function UsersEdit({ user }: { user: UserPayload }) {
                                         )
                                     }
                                     autoComplete="new-password"
-                                    placeholder="Confirm new password"
+                                    placeholder="Confirmar nueva contraseña"
                                 />
                                 <InputError
                                     message={errors.password_confirmation}
@@ -151,10 +150,10 @@ export default function UsersEdit({ user }: { user: UserPayload }) {
 
                             <div className="flex flex-wrap gap-2">
                                 <Button type="submit" disabled={processing}>
-                                    Update user
+                                    Actualizar usuario
                                 </Button>
                                 <Button variant="outline" asChild>
-                                    <Link href={usersIndex()}>Cancel</Link>
+                                    <Link href={usersIndex()}>Cancelar</Link>
                                 </Button>
                             </div>
                         </form>

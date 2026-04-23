@@ -26,17 +26,17 @@ export default function EvaluationsCreate({ collaborators, periods }: { collabor
 
     return (
         <>
-            <Head title="Create evaluation" />
+            <Head title="Crear evaluación" />
             <div className="space-y-6 p-4">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Create evaluation</CardTitle>
-                        <CardDescription>Assign collaborator, period and add required general comment.</CardDescription>
+                        <CardTitle>Crear evaluación</CardTitle>
+                        <CardDescription>Asigna colaborador y periodo, y agrega un comentario general obligatorio.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="collaborator_id">Collaborator</Label>
+                                <Label htmlFor="collaborator_id">Colaborador</Label>
                                 <Select value={data.collaborator_id} onValueChange={(value) => setData('collaborator_id', value)}>
                                     <SelectTrigger id="collaborator_id" className="w-full"><SelectValue /></SelectTrigger>
                                     <SelectContent>
@@ -51,7 +51,7 @@ export default function EvaluationsCreate({ collaborators, periods }: { collabor
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="period_id">Period</Label>
+                                <Label htmlFor="period_id">Periodo</Label>
                                 <Select value={data.period_id} onValueChange={(value) => setData('period_id', value)}>
                                     <SelectTrigger id="period_id" className="w-full"><SelectValue /></SelectTrigger>
                                     <SelectContent>
@@ -66,20 +66,20 @@ export default function EvaluationsCreate({ collaborators, periods }: { collabor
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="general_comment">General comment</Label>
+                                <Label htmlFor="general_comment">Comentario general</Label>
                                 <Textarea
                                     id="general_comment"
                                     value={data.general_comment}
                                     onChange={(event) => setData('general_comment', event.target.value)}
                                     required
-                                    placeholder="Write an overall evaluation comment"
+                                    placeholder="Escribe un comentario general de la evaluación"
                                 />
                                 <InputError message={errors.general_comment} />
                             </div>
 
                             <div className="flex flex-wrap gap-2">
-                                <Button type="submit" disabled={processing}>Save evaluation</Button>
-                                <Button variant="outline" asChild><Link href={indexEvaluation()}>Cancel</Link></Button>
+                                <Button type="submit" disabled={processing}>Guardar evaluación</Button>
+                                <Button variant="outline" asChild><Link href={indexEvaluation()}>Cancelar</Link></Button>
                             </div>
                         </form>
                     </CardContent>
@@ -91,7 +91,7 @@ export default function EvaluationsCreate({ collaborators, periods }: { collabor
 
 EvaluationsCreate.layout = {
     breadcrumbs: [
-        { title: 'Evaluations', href: indexEvaluation() },
-        { title: 'Create', href: createEvaluation() },
+        { title: 'Evaluaciones', href: indexEvaluation() },
+        { title: 'Crear', href: createEvaluation() },
     ],
 };

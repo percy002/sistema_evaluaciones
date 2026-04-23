@@ -30,23 +30,23 @@ function formatDate(value: string): string {
 export default function EvaluationsIndex({ evaluations }: { evaluations: Paginated }) {
     return (
         <>
-            <Head title="Evaluations" />
+            <Head title="Evaluaciones" />
             <div className="space-y-6 p-4">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                     <Heading
-                        title="Evaluations"
-                        description="Manage evaluations by collaborator and period"
+                        title="Evaluaciones"
+                        description="Gestiona las evaluaciones por colaborador y periodo"
                     />
                     <Button asChild>
-                        <Link href={createEvaluation()}>Create evaluation</Link>
+                        <Link href={createEvaluation()}>Crear evaluación</Link>
                     </Button>
                 </div>
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Evaluation list</CardTitle>
+                        <CardTitle>Lista de evaluaciones</CardTitle>
                         <CardDescription>
-                            Showing {evaluations.from ?? 0} to {evaluations.to ?? 0} of {evaluations.total}
+                            Mostrando {evaluations.from ?? 0} a {evaluations.to ?? 0} de {evaluations.total} evaluaciones   
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -54,14 +54,14 @@ export default function EvaluationsIndex({ evaluations }: { evaluations: Paginat
                             <table className="w-full min-w-220 text-sm">
                                 <thead>
                                     <tr className="border-b text-left text-muted-foreground">
-                                        <th className="px-3 py-2 font-medium">Collaborator</th>
-                                        <th className="px-3 py-2 font-medium">Area/Position</th>
-                                        <th className="px-3 py-2 font-medium">Period</th>
-                                        <th className="px-3 py-2 font-medium">Date</th>
-                                        <th className="px-3 py-2 font-medium">Evaluator</th>
+                                        <th className="px-3 py-2 font-medium">Colaborador</th>
+                                        <th className="px-3 py-2 font-medium">Área/Posición</th>
+                                        <th className="px-3 py-2 font-medium">Periodo</th>
+                                        <th className="px-3 py-2 font-medium">Fecha</th>
+                                        <th className="px-3 py-2 font-medium">Evaluador</th>
                                         <th className="px-3 py-2 font-medium">Total</th>
-                                        <th className="px-3 py-2 font-medium">Average</th>
-                                        <th className="px-3 py-2 text-right font-medium">Actions</th>
+                                        <th className="px-3 py-2 font-medium">Promedio</th>
+                                        <th className="px-3 py-2 text-right font-medium">Acciones</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -77,12 +77,12 @@ export default function EvaluationsIndex({ evaluations }: { evaluations: Paginat
                                             <td className="px-3 py-3">
                                                 <div className="flex justify-end gap-2">
                                                     <Button variant="outline" size="sm" asChild>
-                                                        <Link href={EvaluationController.edit(item.id)}>Edit</Link>
+                                                        <Link href={EvaluationController.edit(item.id)}>Editar</Link>
                                                     </Button>
                                                     <Form {...EvaluationController.destroy.form(item.id)}>
                                                         {({ processing }) => (
                                                             <Button variant="destructive" size="sm" disabled={processing}>
-                                                                Delete
+                                                                Eliminar
                                                             </Button>
                                                         )}
                                                     </Form>
@@ -101,5 +101,5 @@ export default function EvaluationsIndex({ evaluations }: { evaluations: Paginat
 }
 
 EvaluationsIndex.layout = {
-    breadcrumbs: [{ title: 'Evaluations', href: indexEvaluation() }],
+    breadcrumbs: [{ title: 'Evaluaciones', href: indexEvaluation() }],
 };

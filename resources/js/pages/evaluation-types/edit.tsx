@@ -21,34 +21,34 @@ export default function EvaluationTypesEdit({ evaluationType }: { evaluationType
 
     return (
         <>
-            <Head title="Edit evaluation type" />
+            <Head title="Editar tipo de evaluación" />
             <div className="space-y-6 p-4">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Edit evaluation type</CardTitle>
-                        <CardDescription>Update name and code.</CardDescription>
+                        <CardTitle>Editar tipo de evaluación</CardTitle>
+                        <CardDescription>Actualiza nombre y código.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                                <Label htmlFor="name">Nombre</Label>
                                 <Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} required autoFocus />
                                 <InputError message={errors.name} />
                             </div>
                             <div className="grid gap-2">
-                                <Label htmlFor="code">Code</Label>
+                                <Label htmlFor="code">Código</Label>
                                 <Select value={data.code} onValueChange={(value) => setData('code', value as 'qualitative' | 'quantitative')}>
                                     <SelectTrigger id="code" className="w-full"><SelectValue /></SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="qualitative">qualitative</SelectItem>
-                                        <SelectItem value="quantitative">quantitative</SelectItem>
+                                        <SelectItem value="qualitative">cualitativa</SelectItem>
+                                        <SelectItem value="quantitative">cuantitativa</SelectItem>
                                     </SelectContent>
                                 </Select>
                                 <InputError message={errors.code} />
                             </div>
                             <div className="flex flex-wrap gap-2">
-                                <Button type="submit" disabled={processing}>Update type</Button>
-                                <Button variant="outline" asChild><Link href={indexType()}>Cancel</Link></Button>
+                                <Button type="submit" disabled={processing}>Actualizar tipo</Button>
+                                <Button variant="outline" asChild><Link href={indexType()}>Cancelar</Link></Button>
                             </div>
                         </form>
                     </CardContent>

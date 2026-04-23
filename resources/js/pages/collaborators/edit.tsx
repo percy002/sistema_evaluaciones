@@ -42,21 +42,21 @@ export default function CollaboratorsEdit({
 
     return (
         <>
-            <Head title="Edit collaborator" />
+            <Head title="Editar colaborador" />
 
             <div className="space-y-6 p-4">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Edit collaborator</CardTitle>
+                        <CardTitle>Editar colaborador</CardTitle>
                         <CardDescription>
-                            Update collaborator information.
+                            Actualiza la información del colaborador.
                         </CardDescription>
                     </CardHeader>
 
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                                <Label htmlFor="name">Nombre</Label>
                                 <Input
                                     id="name"
                                     value={data.name}
@@ -65,13 +65,13 @@ export default function CollaboratorsEdit({
                                     }
                                     required
                                     autoFocus
-                                    placeholder="Collaborator full name"
+                                    placeholder="Nombre completo del colaborador"
                                 />
                                 <InputError message={errors.name} />
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="position">Position</Label>
+                                <Label htmlFor="position">Cargo</Label>
                                 <Input
                                     id="position"
                                     value={data.position}
@@ -79,7 +79,7 @@ export default function CollaboratorsEdit({
                                         setData('position', event.target.value)
                                     }
                                     required
-                                    placeholder="Travel advisor"
+                                    placeholder="Ej: Asesor de ventas"
                                 />
                                 <InputError message={errors.position} />
                             </div>
@@ -101,7 +101,7 @@ export default function CollaboratorsEdit({
 
                             <div className="grid gap-2">
                                 <Label htmlFor="immediate_supervisor">
-                                    Immediate supervisor
+                                    Supervisor inmediato
                                 </Label>
                                 <Input
                                     id="immediate_supervisor"
@@ -113,7 +113,7 @@ export default function CollaboratorsEdit({
                                         )
                                     }
                                     required
-                                    placeholder="Supervisor name"
+                                    placeholder="Nombre del supervisor"
                                 />
                                 <InputError
                                     message={errors.immediate_supervisor}
@@ -122,10 +122,10 @@ export default function CollaboratorsEdit({
 
                             <div className="flex flex-wrap gap-2">
                                 <Button type="submit" disabled={processing}>
-                                    Update collaborator
+                                    Actualizar colaborador
                                 </Button>
                                 <Button variant="outline" asChild>
-                                    <Link href={collaboratorsIndex()}>Cancel</Link>
+                                    <Link href={collaboratorsIndex()}>Cancelar</Link>
                                 </Button>
                             </div>
                         </form>
@@ -139,11 +139,11 @@ export default function CollaboratorsEdit({
 CollaboratorsEdit.layout = {
     breadcrumbs: [
         {
-            title: 'Collaborators',
+            title: 'Colaboradores',
             href: collaboratorsIndex(),
         },
         {
-            title: 'Edit',
+            title: 'Editar',
             href: collaboratorsIndex(),
         },
     ],

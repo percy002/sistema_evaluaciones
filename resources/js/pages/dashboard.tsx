@@ -59,30 +59,30 @@ export default function Dashboard({
 }) {
     return (
         <>
-            <Head title="Dashboard" />
+            <Head title="Panel" />
             <div className="space-y-6 p-4">
                 <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                     <Card>
                         <CardHeader className="pb-2">
-                            <CardDescription>Evaluations</CardDescription>
+                            <CardDescription>Evaluaciones</CardDescription>
                             <CardTitle className="text-2xl">{stats.evaluations_total}</CardTitle>
                         </CardHeader>
                     </Card>
                     <Card>
                         <CardHeader className="pb-2">
-                            <CardDescription>Completed</CardDescription>
+                            <CardDescription>Completadas</CardDescription>
                             <CardTitle className="text-2xl">{stats.evaluations_completed}</CardTitle>
                         </CardHeader>
                     </Card>
                     <Card>
                         <CardHeader className="pb-2">
-                            <CardDescription>Pending</CardDescription>
+                            <CardDescription>Pendientes</CardDescription>
                             <CardTitle className="text-2xl">{stats.evaluations_pending}</CardTitle>
                         </CardHeader>
                     </Card>
                     <Card>
                         <CardHeader className="pb-2">
-                            <CardDescription>Global average</CardDescription>
+                            <CardDescription>Promedio global</CardDescription>
                             <CardTitle className="text-2xl">{stats.average_score ?? 'N/A'}</CardTitle>
                         </CardHeader>
                     </Card>
@@ -92,7 +92,7 @@ export default function Dashboard({
                     {stats.collaborators_total !== null ? (
                         <Card>
                             <CardHeader className="pb-2">
-                                <CardDescription>Collaborators</CardDescription>
+                                <CardDescription>Colaboradores</CardDescription>
                                 <CardTitle className="text-2xl">{stats.collaborators_total}</CardTitle>
                             </CardHeader>
                         </Card>
@@ -100,7 +100,7 @@ export default function Dashboard({
                     {stats.periods_total !== null ? (
                         <Card>
                             <CardHeader className="pb-2">
-                                <CardDescription>Periods</CardDescription>
+                                <CardDescription>Periodos</CardDescription>
                                 <CardTitle className="text-2xl">{stats.periods_total}</CardTitle>
                             </CardHeader>
                         </Card>
@@ -108,7 +108,7 @@ export default function Dashboard({
                     {stats.evaluators_total !== null ? (
                         <Card>
                             <CardHeader className="pb-2">
-                                <CardDescription>Evaluators</CardDescription>
+                                <CardDescription>Evaluadores</CardDescription>
                                 <CardTitle className="text-2xl">{stats.evaluators_total}</CardTitle>
                             </CardHeader>
                         </Card>
@@ -118,17 +118,17 @@ export default function Dashboard({
                 <div className="grid gap-4 lg:grid-cols-2">
                     <Card>
                         <CardHeader>
-                            <CardTitle>Performance by period</CardTitle>
-                            <CardDescription>Average score and volume by period</CardDescription>
+                            <CardTitle>Rendimiento por periodo</CardTitle>
+                            <CardDescription>Puntaje promedio y volumen por periodo</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="overflow-x-auto">
                                 <table className="w-full min-w-120 text-sm">
                                     <thead>
                                         <tr className="border-b text-left text-muted-foreground">
-                                            <th className="px-3 py-2 font-medium">Period</th>
-                                            <th className="px-3 py-2 font-medium">Evaluations</th>
-                                            <th className="px-3 py-2 font-medium">Average</th>
+                                            <th className="px-3 py-2 font-medium">Periodo</th>
+                                            <th className="px-3 py-2 font-medium">Evaluaciones</th>
+                                            <th className="px-3 py-2 font-medium">Promedio</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -147,17 +147,17 @@ export default function Dashboard({
 
                     <Card>
                         <CardHeader>
-                            <CardTitle>Performance by area</CardTitle>
-                            <CardDescription>Areas with most evaluations and their averages</CardDescription>
+                            <CardTitle>Rendimiento por área</CardTitle>
+                            <CardDescription>Áreas con más evaluaciones y sus promedios</CardDescription>
                         </CardHeader>
                         <CardContent>
                             <div className="overflow-x-auto">
                                 <table className="w-full min-w-120 text-sm">
                                     <thead>
                                         <tr className="border-b text-left text-muted-foreground">
-                                            <th className="px-3 py-2 font-medium">Area</th>
-                                            <th className="px-3 py-2 font-medium">Evaluations</th>
-                                            <th className="px-3 py-2 font-medium">Average</th>
+                                            <th className="px-3 py-2 font-medium">Área</th>
+                                            <th className="px-3 py-2 font-medium">Evaluaciones</th>
+                                            <th className="px-3 py-2 font-medium">Promedio</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -177,21 +177,21 @@ export default function Dashboard({
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Recent evaluations</CardTitle>
-                        <CardDescription>Latest evaluated records with completion status</CardDescription>
+                        <CardTitle>Evaluaciones recientes</CardTitle>
+                        <CardDescription>Últimos registros evaluados con estado de avance</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <div className="overflow-x-auto">
                             <table className="w-full min-w-240 text-sm">
                                 <thead>
                                     <tr className="border-b text-left text-muted-foreground">
-                                        <th className="px-3 py-2 font-medium">Collaborator</th>
-                                        <th className="px-3 py-2 font-medium">Area/Position</th>
-                                        <th className="px-3 py-2 font-medium">Period</th>
-                                        <th className="px-3 py-2 font-medium">Evaluator</th>
-                                        <th className="px-3 py-2 font-medium">Progress</th>
+                                        <th className="px-3 py-2 font-medium">Colaborador</th>
+                                        <th className="px-3 py-2 font-medium">Área/Cargo</th>
+                                        <th className="px-3 py-2 font-medium">Periodo</th>
+                                        <th className="px-3 py-2 font-medium">Evaluador</th>
+                                        <th className="px-3 py-2 font-medium">Avance</th>
                                         <th className="px-3 py-2 font-medium">Total</th>
-                                        <th className="px-3 py-2 font-medium">Average</th>
+                                        <th className="px-3 py-2 font-medium">Promedio</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -219,7 +219,7 @@ export default function Dashboard({
 Dashboard.layout = {
     breadcrumbs: [
         {
-            title: 'Dashboard',
+            title: 'Panel',
             href: dashboard(),
         },
     ],

@@ -26,16 +26,16 @@ export default function EvaluationQuestionsEdit({ evaluationQuestion, competenci
 
     return (
         <>
-            <Head title="Edit evaluation question" />
+            <Head title="Editar pregunta de evaluación" />
             <div className="space-y-6 p-4">
                 <Card>
-                    <CardHeader><CardTitle>Edit question</CardTitle><CardDescription>Update question details.</CardDescription></CardHeader>
+                    <CardHeader><CardTitle>Editar pregunta</CardTitle><CardDescription>Actualiza los detalles de la pregunta.</CardDescription></CardHeader>
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
-                            <div className="grid gap-2"><Label htmlFor="competency_id">Competency</Label><Select value={data.competency_id} onValueChange={(value) => setData('competency_id', value)}><SelectTrigger id="competency_id" className="w-full"><SelectValue /></SelectTrigger><SelectContent>{competencies.map((competency) => <SelectItem key={competency.id} value={String(competency.id)}>{competency.name}</SelectItem>)}</SelectContent></Select><InputError message={errors.competency_id} /></div>
-                            <div className="grid gap-2"><Label htmlFor="statement">Statement</Label><Input id="statement" value={data.statement} onChange={(e) => setData('statement', e.target.value)} required /><InputError message={errors.statement} /></div>
-                            <div className="grid gap-2"><Label htmlFor="sort_order">Order</Label><Input id="sort_order" type="number" value={data.sort_order} onChange={(e) => setData('sort_order', Number(e.target.value))} min={0} required /><InputError message={errors.sort_order} /></div>
-                            <div className="flex flex-wrap gap-2"><Button type="submit" disabled={processing}>Update question</Button><Button variant="outline" asChild><Link href={indexQuestion()}>Cancel</Link></Button></div>
+                            <div className="grid gap-2"><Label htmlFor="competency_id">Competencia</Label><Select value={data.competency_id} onValueChange={(value) => setData('competency_id', value)}><SelectTrigger id="competency_id" className="w-full"><SelectValue /></SelectTrigger><SelectContent>{competencies.map((competency) => <SelectItem key={competency.id} value={String(competency.id)}>{competency.name}</SelectItem>)}</SelectContent></Select><InputError message={errors.competency_id} /></div>
+                            <div className="grid gap-2"><Label htmlFor="statement">Enunciado</Label><Input id="statement" value={data.statement} onChange={(e) => setData('statement', e.target.value)} required /><InputError message={errors.statement} /></div>
+                            <div className="grid gap-2"><Label htmlFor="sort_order">Orden</Label><Input id="sort_order" type="number" value={data.sort_order} onChange={(e) => setData('sort_order', Number(e.target.value))} min={0} required /><InputError message={errors.sort_order} /></div>
+                            <div className="flex flex-wrap gap-2"><Button type="submit" disabled={processing}>Actualizar pregunta</Button><Button variant="outline" asChild><Link href={indexQuestion()}>Cancelar</Link></Button></div>
                         </form>
                     </CardContent>
                 </Card>

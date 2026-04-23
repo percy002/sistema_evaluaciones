@@ -19,34 +19,34 @@ export default function EvaluationTypesCreate() {
 
     return (
         <>
-            <Head title="Create evaluation type" />
+            <Head title="Crear tipo de evaluación" />
             <div className="space-y-6 p-4">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Create evaluation type</CardTitle>
-                        <CardDescription>Add a type for qualitative or quantitative block.</CardDescription>
+                        <CardTitle>Crear tipo de evaluación</CardTitle>
+                        <CardDescription>Agrega un tipo para bloques cualitativos o cuantitativos.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
-                                <Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} required autoFocus placeholder="Qualitative evaluation" />
+                                <Label htmlFor="name">Nombre</Label>
+                                <Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} required autoFocus placeholder="Evaluación cualitativa" />
                                 <InputError message={errors.name} />
                             </div>
                             <div className="grid gap-2">
-                                <Label htmlFor="code">Code</Label>
+                                <Label htmlFor="code">Código</Label>
                                 <Select value={data.code} onValueChange={(value) => setData('code', value as 'qualitative' | 'quantitative')}>
                                     <SelectTrigger id="code" className="w-full"><SelectValue /></SelectTrigger>
                                     <SelectContent>
-                                        <SelectItem value="qualitative">qualitative</SelectItem>
-                                        <SelectItem value="quantitative">quantitative</SelectItem>
+                                        <SelectItem value="qualitative">cualitativa</SelectItem>
+                                        <SelectItem value="quantitative">cuantitativa</SelectItem>
                                     </SelectContent>
                                 </Select>
                                 <InputError message={errors.code} />
                             </div>
                             <div className="flex flex-wrap gap-2">
-                                <Button type="submit" disabled={processing}>Save type</Button>
-                                <Button variant="outline" asChild><Link href={indexType()}>Cancel</Link></Button>
+                                <Button type="submit" disabled={processing}>Guardar tipo</Button>
+                                <Button variant="outline" asChild><Link href={indexType()}>Cancelar</Link></Button>
                             </div>
                         </form>
                     </CardContent>

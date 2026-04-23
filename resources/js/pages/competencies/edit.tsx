@@ -31,18 +31,18 @@ export default function CompetenciesEdit({ competency, types, categories }: { co
 
     return (
         <>
-            <Head title="Edit competency" />
+            <Head title="Editar competencia" />
             <div className="space-y-6 p-4">
                 <Card>
-                    <CardHeader><CardTitle>Edit competency</CardTitle><CardDescription>Update competency setup.</CardDescription></CardHeader>
+                    <CardHeader><CardTitle>Editar competencia</CardTitle><CardDescription>Actualiza la configuración de la competencia.</CardDescription></CardHeader>
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-2"><Label htmlFor="evaluation_type_id">Type</Label><Select value={data.evaluation_type_id} onValueChange={(value) => { setData('evaluation_type_id', value); setData('evaluation_category_id', ''); }}><SelectTrigger id="evaluation_type_id" className="w-full"><SelectValue /></SelectTrigger><SelectContent>{types.map((type) => <SelectItem key={type.id} value={String(type.id)}>{type.name}</SelectItem>)}</SelectContent></Select><InputError message={errors.evaluation_type_id} /></div>
-                            <div className="grid gap-2"><Label htmlFor="evaluation_category_id">Category (optional)</Label><Select value={data.evaluation_category_id || 'none'} onValueChange={(value) => setData('evaluation_category_id', value === 'none' ? '' : value)}><SelectTrigger id="evaluation_category_id" className="w-full"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="none">No category</SelectItem>{filteredCategories.map((category) => <SelectItem key={category.id} value={String(category.id)}>{category.name}</SelectItem>)}</SelectContent></Select><InputError message={errors.evaluation_category_id} /></div>
-                            <div className="grid gap-2"><Label htmlFor="name">Name</Label><Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} required /><InputError message={errors.name} /></div>
-                            <div className="grid gap-2"><Label htmlFor="description">Description</Label><Input id="description" value={data.description} onChange={(e) => setData('description', e.target.value)} /><InputError message={errors.description} /></div>
-                            <div className="grid gap-2"><Label htmlFor="sort_order">Order</Label><Input id="sort_order" type="number" value={data.sort_order} onChange={(e) => setData('sort_order', Number(e.target.value))} min={0} required /><InputError message={errors.sort_order} /></div>
-                            <div className="flex flex-wrap gap-2"><Button type="submit" disabled={processing}>Update competency</Button><Button variant="outline" asChild><Link href={indexCompetency()}>Cancel</Link></Button></div>
+                            <div className="grid gap-2"><Label htmlFor="evaluation_category_id">Categoría (opcional)</Label><Select value={data.evaluation_category_id || 'none'} onValueChange={(value) => setData('evaluation_category_id', value === 'none' ? '' : value)}><SelectTrigger id="evaluation_category_id" className="w-full"><SelectValue /></SelectTrigger><SelectContent><SelectItem value="none">Sin categoría</SelectItem>{filteredCategories.map((category) => <SelectItem key={category.id} value={String(category.id)}>{category.name}</SelectItem>)}</SelectContent></Select><InputError message={errors.evaluation_category_id} /></div>
+                            <div className="grid gap-2"><Label htmlFor="name">Nombre</Label><Input id="name" value={data.name} onChange={(e) => setData('name', e.target.value)} required /><InputError message={errors.name} /></div>
+                            <div className="grid gap-2"><Label htmlFor="description">Descripción</Label><Input id="description" value={data.description} onChange={(e) => setData('description', e.target.value)} /><InputError message={errors.description} /></div>
+                            <div className="grid gap-2"><Label htmlFor="sort_order">Orden</Label><Input id="sort_order" type="number" value={data.sort_order} onChange={(e) => setData('sort_order', Number(e.target.value))} min={0} required /><InputError message={errors.sort_order} /></div>
+                            <div className="flex flex-wrap gap-2"><Button type="submit" disabled={processing}>Actualizar competencia</Button><Button variant="outline" asChild><Link href={indexCompetency()}>Cancelar</Link></Button></div>
                         </form>
                     </CardContent>
                 </Card>

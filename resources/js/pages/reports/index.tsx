@@ -93,25 +93,25 @@ export default function ReportsIndex({
 
     return (
         <>
-            <Head title="Reports" />
+            <Head title="Reportes" />
 
             <div className="space-y-6 p-4">
                 <Heading
-                    title="Reports"
-                    description="Consult evaluation history and results with filters"
+                    title="Reportes"
+                    description="Consulta el historial y resultados de evaluaciones con filtros"
                 />
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Filters</CardTitle>
-                        <CardDescription>Use filters to narrow down report results.</CardDescription>
+                        <CardTitle>Filtros</CardTitle>
+                        <CardDescription>Usa filtros para limitar los resultados del reporte.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={submit} className="grid gap-3 md:grid-cols-2 xl:grid-cols-5">
                             <Input
                                 value={localFilters.search}
                                 onChange={(event) => setLocalFilters({ ...localFilters, search: event.target.value })}
-                                placeholder="Search collaborator/area/position"
+                                placeholder="Buscar colaborador/área/cargo"
                             />
 
                             <select
@@ -119,7 +119,7 @@ export default function ReportsIndex({
                                 onChange={(event) => setLocalFilters({ ...localFilters, period_id: event.target.value })}
                                 className="h-9 rounded-md border bg-transparent px-3 text-sm"
                             >
-                                <option value="">All periods</option>
+                                <option value="">Todos los periodos</option>
                                 {filterOptions.periods.map((period) => (
                                     <option key={period.id} value={period.id}>
                                         {period.name}
@@ -132,7 +132,7 @@ export default function ReportsIndex({
                                 onChange={(event) => setLocalFilters({ ...localFilters, collaborator_id: event.target.value })}
                                 className="h-9 rounded-md border bg-transparent px-3 text-sm"
                             >
-                                <option value="">All collaborators</option>
+                                <option value="">Todos los colaboradores</option>
                                 {filterOptions.collaborators.map((collaborator) => (
                                     <option key={collaborator.id} value={collaborator.id}>
                                         {collaborator.name}
@@ -145,7 +145,7 @@ export default function ReportsIndex({
                                 onChange={(event) => setLocalFilters({ ...localFilters, evaluator_user_id: event.target.value })}
                                 className="h-9 rounded-md border bg-transparent px-3 text-sm"
                             >
-                                <option value="">All evaluators</option>
+                                <option value="">Todos los evaluadores</option>
                                 {filterOptions.evaluators.map((evaluator) => (
                                     <option key={evaluator.id} value={evaluator.id}>
                                         {evaluator.name}
@@ -158,15 +158,15 @@ export default function ReportsIndex({
                                 onChange={(event) => setLocalFilters({ ...localFilters, status: event.target.value })}
                                 className="h-9 rounded-md border bg-transparent px-3 text-sm"
                             >
-                                <option value="">All statuses</option>
-                                <option value="completed">Completed</option>
-                                <option value="pending">Pending</option>
+                                <option value="">Todos los estados</option>
+                                <option value="completed">Completado</option>
+                                <option value="pending">Pendiente</option>
                             </select>
 
                             <div className="md:col-span-2 xl:col-span-5 flex flex-wrap gap-2">
-                                <Button type="submit">Apply filters</Button>
+                                <Button type="submit">Aplicar filtros</Button>
                                 <Button type="button" variant="outline" onClick={clearFilters}>
-                                    Clear filters
+                                    Limpiar filtros
                                 </Button>
                             </div>
                         </form>
@@ -175,9 +175,9 @@ export default function ReportsIndex({
 
                 <Card>
                     <CardHeader>
-                        <CardTitle>Results</CardTitle>
+                        <CardTitle>Resultados</CardTitle>
                         <CardDescription>
-                            Showing {reports.from ?? 0} to {reports.to ?? 0} of {reports.total}
+                            Mostrando {reports.from ?? 0} a {reports.to ?? 0} de {reports.total}
                         </CardDescription>
                     </CardHeader>
                     <CardContent>
@@ -208,7 +208,7 @@ export default function ReportsIndex({
                                             <td className="px-3 py-3">
                                                 <div className="flex justify-end">
                                                     <Button variant="outline" size="sm" asChild>
-                                                        <Link href={reportsShow(item.id)}>View report</Link>
+                                                        <Link href={reportsShow(item.id)}>Ver reporte</Link>
                                                     </Button>
                                                 </div>
                                             </td>
@@ -225,5 +225,5 @@ export default function ReportsIndex({
 }
 
 ReportsIndex.layout = {
-    breadcrumbs: [{ title: 'Reports', href: reportsIndex() }],
+    breadcrumbs: [{ title: 'Reportes', href: reportsIndex() }],
 };

@@ -33,21 +33,21 @@ export default function CollaboratorsCreate() {
 
     return (
         <>
-            <Head title="Create collaborator" />
+            <Head title="Crear colaborador" />
 
             <div className="space-y-6 p-4">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Create collaborator</CardTitle>
+                        <CardTitle>Crear colaborador</CardTitle>
                         <CardDescription>
-                            Register collaborator information for evaluations.
+                            Registra información del colaborador para evaluaciones.
                         </CardDescription>
                     </CardHeader>
 
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                                <Label htmlFor="name">Nombre</Label>
                                 <Input
                                     id="name"
                                     value={data.name}
@@ -56,13 +56,13 @@ export default function CollaboratorsCreate() {
                                     }
                                     required
                                     autoFocus
-                                    placeholder="Collaborator full name"
+                                    placeholder="Nombre completo del colaborador"
                                 />
                                 <InputError message={errors.name} />
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="position">Position</Label>
+                                <Label htmlFor="position">Cargo</Label>
                                 <Input
                                     id="position"
                                     value={data.position}
@@ -70,7 +70,7 @@ export default function CollaboratorsCreate() {
                                         setData('position', event.target.value)
                                     }
                                     required
-                                    placeholder="Travel advisor"
+                                    placeholder="Ej: Asesor de ventas"
                                 />
                                 <InputError message={errors.position} />
                             </div>
@@ -92,7 +92,7 @@ export default function CollaboratorsCreate() {
 
                             <div className="grid gap-2">
                                 <Label htmlFor="immediate_supervisor">
-                                    Immediate supervisor
+                                    Supervisor inmediato
                                 </Label>
                                 <Input
                                     id="immediate_supervisor"
@@ -104,7 +104,7 @@ export default function CollaboratorsCreate() {
                                         )
                                     }
                                     required
-                                    placeholder="Supervisor name"
+                                    placeholder="Nombre del supervisor"
                                 />
                                 <InputError
                                     message={errors.immediate_supervisor}
@@ -113,10 +113,10 @@ export default function CollaboratorsCreate() {
 
                             <div className="flex flex-wrap gap-2">
                                 <Button type="submit" disabled={processing}>
-                                    Save collaborator
+                                    Guardar colaborador
                                 </Button>
                                 <Button variant="outline" asChild>
-                                    <Link href={collaboratorsIndex()}>Cancel</Link>
+                                    <Link href={collaboratorsIndex()}>Cancelar</Link>
                                 </Button>
                             </div>
                         </form>
@@ -130,11 +130,11 @@ export default function CollaboratorsCreate() {
 CollaboratorsCreate.layout = {
     breadcrumbs: [
         {
-            title: 'Collaborators',
+            title: 'Colaboradores',
             href: collaboratorsIndex(),
         },
         {
-            title: 'Create',
+            title: 'Crear',
             href: collaboratorsCreate(),
         },
     ],

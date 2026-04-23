@@ -42,22 +42,22 @@ export default function EvaluationsEdit({
 
     return (
         <>
-            <Head title="Edit evaluation" />
+            <Head title="Editar evaluación" />
             <div className="space-y-6 p-4">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Edit evaluation</CardTitle>
-                        <CardDescription>Update collaborator/period and general comment. Evaluation date is automatic.</CardDescription>
+                        <CardTitle>Editar evaluación</CardTitle>
+                        <CardDescription>Actualiza colaborador, periodo y comentario general. La fecha de evaluación es automática.</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="evaluation_date">Evaluation date</Label>
+                                <Label htmlFor="evaluation_date">Fecha de evaluación</Label>
                                 <Input id="evaluation_date" value={evaluation.evaluation_date} disabled />
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="collaborator_id">Collaborator</Label>
+                                <Label htmlFor="collaborator_id">Colaborador</Label>
                                 <Select value={data.collaborator_id} onValueChange={(value) => setData('collaborator_id', value)}>
                                     <SelectTrigger id="collaborator_id" className="w-full"><SelectValue /></SelectTrigger>
                                     <SelectContent>
@@ -72,7 +72,7 @@ export default function EvaluationsEdit({
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="period_id">Period</Label>
+                                <Label htmlFor="period_id">Periodo</Label>
                                 <Select value={data.period_id} onValueChange={(value) => setData('period_id', value)}>
                                     <SelectTrigger id="period_id" className="w-full"><SelectValue /></SelectTrigger>
                                     <SelectContent>
@@ -85,7 +85,7 @@ export default function EvaluationsEdit({
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="general_comment">General comment</Label>
+                                <Label htmlFor="general_comment">Comentario general</Label>
                                 <Textarea
                                     id="general_comment"
                                     value={data.general_comment}
@@ -96,8 +96,8 @@ export default function EvaluationsEdit({
                             </div>
 
                             <div className="flex flex-wrap gap-2">
-                                <Button type="submit" disabled={processing}>Update evaluation</Button>
-                                <Button variant="outline" asChild><Link href={indexEvaluation()}>Cancel</Link></Button>
+                                <Button type="submit" disabled={processing}>Actualizar evaluación</Button>
+                                <Button variant="outline" asChild><Link href={indexEvaluation()}>Cancelar</Link></Button>
                             </div>
                         </form>
                     </CardContent>

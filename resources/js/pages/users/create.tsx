@@ -40,21 +40,21 @@ export default function UsersCreate() {
 
     return (
         <>
-            <Head title="Create user" />
+            <Head title="Crear usuario" />
 
             <div className="space-y-6 p-4">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Create user</CardTitle>
+                        <CardTitle>Crear usuario</CardTitle>
                         <CardDescription>
-                            Register a new administrator or evaluator.
+                            Registra un nuevo administrador o evaluador.
                         </CardDescription>
                     </CardHeader>
 
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                                <Label htmlFor="name">Nombre</Label>
                                 <Input
                                     id="name"
                                     value={data.name}
@@ -63,13 +63,13 @@ export default function UsersCreate() {
                                     }
                                     required
                                     autoFocus
-                                    placeholder="Full name"
+                                    placeholder="Nombre completo"
                                 />
                                 <InputError message={errors.name} />
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="email">Email</Label>
+                                <Label htmlFor="email">Correo electrónico</Label>
                                 <Input
                                     id="email"
                                     type="email"
@@ -78,7 +78,7 @@ export default function UsersCreate() {
                                         setData('email', event.target.value)
                                     }
                                     required
-                                    placeholder="user@company.com"
+                                    placeholder="usuario@empresa.com"
                                 />
                                 <InputError message={errors.email} />
                             </div>
@@ -92,14 +92,14 @@ export default function UsersCreate() {
                                     }
                                 >
                                     <SelectTrigger id="role" className="w-full">
-                                        <SelectValue placeholder="Select a role" />
+                                        <SelectValue placeholder="Selecciona un rol" />
                                     </SelectTrigger>
                                     <SelectContent>
                                         <SelectItem value="administrator">
-                                            Administrator
+                                            Administrador
                                         </SelectItem>
                                         <SelectItem value="evaluator">
-                                            Evaluator
+                                            Evaluador
                                         </SelectItem>
                                     </SelectContent>
                                 </Select>
@@ -107,7 +107,7 @@ export default function UsersCreate() {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="password">Password</Label>
+                                <Label htmlFor="password">Contraseña</Label>
                                 <PasswordInput
                                     id="password"
                                     value={data.password}
@@ -116,14 +116,14 @@ export default function UsersCreate() {
                                     }
                                     required
                                     autoComplete="new-password"
-                                    placeholder="Password"
+                                    placeholder="Contraseña"
                                 />
                                 <InputError message={errors.password} />
                             </div>
 
                             <div className="grid gap-2">
                                 <Label htmlFor="password_confirmation">
-                                    Confirm password
+                                    Confirmar contraseña
                                 </Label>
                                 <PasswordInput
                                     id="password_confirmation"
@@ -136,7 +136,7 @@ export default function UsersCreate() {
                                     }
                                     required
                                     autoComplete="new-password"
-                                    placeholder="Confirm password"
+                                    placeholder="Confirmar contraseña"
                                 />
                                 <InputError
                                     message={errors.password_confirmation}
@@ -145,10 +145,10 @@ export default function UsersCreate() {
 
                             <div className="flex flex-wrap gap-2">
                                 <Button type="submit" disabled={processing}>
-                                    Save user
+                                    Guardar usuario
                                 </Button>
                                 <Button variant="outline" asChild>
-                                    <Link href={usersIndex()}>Cancel</Link>
+                                    <Link href={usersIndex()}>Cancelar</Link>
                                 </Button>
                             </div>
                         </form>

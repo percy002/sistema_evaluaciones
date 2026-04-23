@@ -29,21 +29,21 @@ export default function PeriodsCreate() {
 
     return (
         <>
-            <Head title="Create period" />
+            <Head title="Crear periodo" />
 
             <div className="space-y-6 p-4">
                 <Card>
                     <CardHeader>
-                        <CardTitle>Create period</CardTitle>
+                        <CardTitle>Crear periodo</CardTitle>
                         <CardDescription>
-                            Define an evaluation period with start and end dates.
+                            Define un periodo de evaluación con fecha de inicio y fin.
                         </CardDescription>
                     </CardHeader>
 
                     <CardContent>
                         <form onSubmit={submit} className="space-y-6">
                             <div className="grid gap-2">
-                                <Label htmlFor="name">Name</Label>
+                                <Label htmlFor="name">Nombre</Label>
                                 <Input
                                     id="name"
                                     value={data.name}
@@ -52,13 +52,13 @@ export default function PeriodsCreate() {
                                     }
                                     required
                                     autoFocus
-                                    placeholder="2026 - Semester 1"
+                                    placeholder="2026 - Semestre 1"
                                 />
                                 <InputError message={errors.name} />
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="start_date">Start date</Label>
+                                <Label htmlFor="start_date">Fecha de inicio</Label>
                                 <Input
                                     id="start_date"
                                     type="date"
@@ -72,7 +72,7 @@ export default function PeriodsCreate() {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="end_date">End date</Label>
+                                <Label htmlFor="end_date">Fecha de fin</Label>
                                 <Input
                                     id="end_date"
                                     type="date"
@@ -87,10 +87,10 @@ export default function PeriodsCreate() {
 
                             <div className="flex flex-wrap gap-2">
                                 <Button type="submit" disabled={processing}>
-                                    Save period
+                                    Guardar periodo
                                 </Button>
                                 <Button variant="outline" asChild>
-                                    <Link href={periodsIndex()}>Cancel</Link>
+                                    <Link href={periodsIndex()}>Cancelar</Link>
                                 </Button>
                             </div>
                         </form>
