@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-#[Fillable(['collaborator_id', 'period_id', 'evaluator_user_id', 'evaluation_date', 'general_comment', 'total_score', 'average_score'])]
+#[Fillable(['collaborator_id', 'period_id', 'evaluator_user_id', 'evaluation_date', 'custom_start_date', 'custom_end_date', 'general_comment', 'total_score', 'average_score'])]
 class Evaluation extends Model
 {
     use SoftDeletes;
@@ -20,6 +20,8 @@ class Evaluation extends Model
     {
         return [
             'evaluation_date' => 'date',
+            'custom_start_date' => 'date',
+            'custom_end_date' => 'date',
             'total_score' => 'integer',
             'average_score' => 'decimal:2',
         ];

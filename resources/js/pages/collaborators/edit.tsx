@@ -95,6 +95,7 @@ export default function CollaboratorsEdit({
                                     <option value="ventas">Ventas</option>
                                     <option value="operaciones">Operaciones</option>
                                     <option value="ti">TI</option>
+                                    <option value="administracion">Administración</option>
                                 </select>
                                 <InputError message={errors.role} />
                             </div>

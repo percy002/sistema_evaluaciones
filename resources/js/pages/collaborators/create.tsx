@@ -76,7 +76,7 @@ export default function CollaboratorsCreate() {
                             </div>
 
                             <div className="grid gap-2">
-                                <Label htmlFor="role">Role</Label>
+                                <Label htmlFor="role">Area</Label>
                                 <select
                                     id="role"
                                     value={data.role}
@@ -86,6 +86,7 @@ export default function CollaboratorsCreate() {
                                     <option value="ventas">Ventas</option>
                                     <option value="operaciones">Operaciones</option>
                                     <option value="ti">TI</option>
+                                    <option value="administracion">Administración</option>
                                 </select>
                                 <InputError message={errors.role} />
                             </div>

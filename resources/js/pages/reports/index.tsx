@@ -5,6 +5,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { index as reportsIndex, show as reportsShow } from '@/routes/reports';
+import dayjs from 'dayjs';
+import 'dayjs/locale/es';
+
+dayjs.locale('es');
 
 type Option = {
     id: number;
@@ -14,6 +18,8 @@ type Option = {
 type ReportItem = {
     id: number;
     evaluation_date: string;
+    custom_start_date?: string | null;
+    custom_end_date?: string | null;
     total_score: number | null;
     average_score: number | null;
     answers_count: number;
@@ -187,7 +193,7 @@ export default function ReportsIndex({
                                     <tr className="border-b text-left text-muted-foreground">
                                         <th className="px-3 py-2 font-medium">Collaborator</th>
                                         <th className="px-3 py-2 font-medium">Area/Position</th>
-                                        <th className="px-3 py-2 font-medium">Period</th>
+                                        <th className="px-3 py-2 font-medium">Fechas</th>
                                         <th className="px-3 py-2 font-medium">Progress</th>
                                         <th className="px-3 py-2 font-medium">Total</th>
                                         <th className="px-3 py-2 font-medium">Average</th>
@@ -200,7 +206,11 @@ export default function ReportsIndex({
                                         <tr key={item.id} className="border-b last:border-none">
                                             <td className="px-3 py-3 font-medium">{item.collaborator.name}</td>
                                             <td className="px-3 py-3">{item.collaborator.area} / {item.collaborator.position}</td>
-                                            <td className="px-3 py-3">{item.period.name}</td>
+                                            <td className="px-3 py-3">
+                                                {item.custom_start_date && item.custom_end_date
+                                                    ? `${dayjs(item.custom_start_date).format('DD/MM/YYYY')} al ${dayjs(item.custom_end_date).format('DD/MM/YYYY')  }`
+                                                    : (item.period ? item.period.name : 'Sin periodo')}
+                                            </td>
                                             <td className="px-3 py-3">{item.answers_count} / {questionCount}</td>
                                             <td className="px-3 py-3">{item.total_score ?? 'N/A'}</td>
                                             <td className="px-3 py-3">{item.average_score ?? 'N/A'}</td>

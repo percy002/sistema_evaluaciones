@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Carbon\Carbon;
 
 class ReportController extends Controller
 {
@@ -44,20 +45,22 @@ class ReportController extends Controller
                 'period_id',
                 'evaluator_user_id',
                 'evaluation_date',
+                'custom_start_date',
+                'custom_end_date',
                 'general_comment',
                 'total_score',
                 'average_score',
                 'created_at',
             ]);
 
-        if (! $user->isAdministrator()) {
+        if (!$user->isAdministrator()) {
             $reportsQuery->where('evaluator_user_id', $user->id);
         }
 
         $reportsQuery
-            ->when(isset($filters['period_id']), fn (Builder $query) => $query->where('period_id', $filters['period_id']))
-            ->when(isset($filters['collaborator_id']), fn (Builder $query) => $query->where('collaborator_id', $filters['collaborator_id']))
-            ->when($user->isAdministrator() && isset($filters['evaluator_user_id']), fn (Builder $query) => $query->where('evaluator_user_id', $filters['evaluator_user_id']))
+            ->when(isset($filters['period_id']), fn(Builder $query) => $query->where('period_id', $filters['period_id']))
+            ->when(isset($filters['collaborator_id']), fn(Builder $query) => $query->where('collaborator_id', $filters['collaborator_id']))
+            ->when($user->isAdministrator() && isset($filters['evaluator_user_id']), fn(Builder $query) => $query->where('evaluator_user_id', $filters['evaluator_user_id']))
             ->when(($filters['search'] ?? null) !== null, function (Builder $query) use ($filters): void {
                 $search = trim((string) $filters['search']);
 
@@ -71,8 +74,8 @@ class ReportController extends Controller
                         ->orWhere('position', 'like', "%{$search}%");
                 });
             })
-            ->when(($filters['status'] ?? null) === 'completed' && $questionCount > 0, fn (Builder $query) => $query->has('answers', '=', $questionCount))
-            ->when(($filters['status'] ?? null) === 'pending' && $questionCount > 0, fn (Builder $query) => $query->has('answers', '<', $questionCount))
+            ->when(($filters['status'] ?? null) === 'completed' && $questionCount > 0, fn(Builder $query) => $query->has('answers', '=', $questionCount))
+            ->when(($filters['status'] ?? null) === 'pending' && $questionCount > 0, fn(Builder $query) => $query->has('answers', '<', $questionCount))
             ->latest();
 
         return Inertia::render('reports/index', [
@@ -113,7 +116,7 @@ class ReportController extends Controller
 
         abort_unless($user !== null, 403);
 
-        if (! $user->isAdministrator() && $report->evaluator_user_id !== $user->id) {
+        if (!$user->isAdministrator() && $report->evaluator_user_id !== $user->id) {
             abort(403);
         }
 
@@ -139,8 +142,10 @@ class ReportController extends Controller
                 'collaborator' => $report->collaborator,
                 'period' => $report->period,
                 'evaluator' => $report->evaluator,
+                'start_date' => $report->custom_start_date ?? $report->period?->start_date,
+                'end_date' => $report->custom_end_date ?? $report->period?->end_date,
                 'answers' => $report->answers
-                    ->sortBy(fn ($answer) => $answer->question?->sort_order)
+                    ->sortBy(fn($answer) => $answer->question?->sort_order)
                     ->values()
                     ->map(function ($answer): array {
                         return [

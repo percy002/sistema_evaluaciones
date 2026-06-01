@@ -69,7 +69,7 @@ export default function EvaluationsIndex({ evaluations }: { evaluations: Paginat
                                         <tr key={item.id} className="border-b last:border-none">
                                             <td className="px-3 py-3 font-medium">{item.collaborator.name}</td>
                                             <td className="px-3 py-3">{item.collaborator.area} / {item.collaborator.position}</td>
-                                            <td className="px-3 py-3">{item.period.name}</td>
+                                            <td className="px-3 py-3">{item.period ? item.period.name : 'Sin periodo'}</td>
                                             <td className="px-3 py-3">{formatDate(item.evaluation_date)}</td>
                                             <td className="px-3 py-3">{item.evaluator?.name ?? 'N/A'}</td>
                                             <td className="px-3 py-3">{item.total_score ?? 'N/A'}</td>

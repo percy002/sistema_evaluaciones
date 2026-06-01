@@ -26,7 +26,7 @@ class UpdateCollaboratorRequest extends FormRequest
             'name' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
             'immediate_supervisor' => ['required', 'string', 'max:255'],
-            'role' => ['required', 'string', 'in:ventas,operaciones,ti'],
+            'role' => ['required', 'string', 'in:ventas,operaciones,ti,administracion'],
         ];
     }
 }

@@ -23,6 +23,17 @@ class StoreEvaluationRequest extends FormRequest
      */
     public function rules(): array
     {
+        $useCustomDates = $this->boolean('custom_dates_mode') || ($this->filled('custom_start_date') || $this->filled('custom_end_date'));
+
+        if ($useCustomDates) {
+            return [
+                'collaborator_id' => ['required', 'exists:collaborators,id'],
+                'custom_start_date' => ['required', 'date'],
+                'custom_end_date' => ['required', 'date', 'after_or_equal:custom_start_date'],
+                'general_comment' => ['nullable', 'string', 'max:2000'],
+            ];
+        }
+
         return [
             'collaborator_id' => ['required', 'exists:collaborators,id'],
             'period_id' => [
@@ -34,7 +45,7 @@ class StoreEvaluationRequest extends FormRequest
                         ->where('period_id', $this->integer('period_id'))
                         ->whereNull('deleted_at')),
             ],
-            'general_comment' => ['required', 'string', 'max:2000'],
+            'general_comment' => ['nullable', 'string', 'max:2000'],
         ];
     }
 }

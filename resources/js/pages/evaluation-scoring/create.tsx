@@ -227,7 +227,7 @@ export default function EvaluationScoringCreate({
             <div className="space-y-6 p-4">
                 <Heading
                     title="Formulario de calificación"
-                    description={`${evaluation.collaborator.name} · ${evaluation.period.name}`}
+                    description={`${evaluation.collaborator.name} · ${evaluation.period ? evaluation.period.name : 'Sin periodo'}`}
                 />
 
                 <Card>

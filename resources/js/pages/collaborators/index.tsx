@@ -108,6 +108,8 @@ export default function CollaboratorsIndex({
                                                     ? 'TI'
                                                     : collaborator.role === 'operaciones'
                                                     ? 'Operaciones'
+                                                    : collaborator.role === 'administracion'
+                                                    ? 'Administración'
                                                     : 'Ventas'}
                                             </td>
                                             <td className="px-3 py-3">

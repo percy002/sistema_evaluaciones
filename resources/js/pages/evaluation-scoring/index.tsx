@@ -100,7 +100,7 @@ export default function EvaluationScoringIndex({
                                                 {item.collaborator.position}
                                             </td>
                                             <td className="px-3 py-3">
-                                                {item.period.name}
+                                                {item.period ? item.period.name : 'Sin periodo'}
                                             </td>
                                             <td className="px-3 py-3">
                                                 {item.answers_count} /{' '}

@@ -64,11 +64,20 @@ class EvaluationController extends Controller
      */
     public function store(StoreEvaluationRequest $request): RedirectResponse
     {
-        Evaluation::create([
-            ...$request->validated(),
-            'evaluation_date' => now()->toDateString(),
-            'evaluator_user_id' => $request->user()?->id,
-        ]);
+
+        $data = $request->validated();
+        $data['evaluator_user_id'] = $request->user()?->id;
+
+        if (isset($data['custom_start_date']) && isset($data['custom_end_date'])) {
+            $data['evaluation_date'] = $data['custom_start_date'];
+            $data['period_id'] = null;
+        } else {
+            $data['evaluation_date'] = now()->toDateString();
+            $data['custom_start_date'] = null;
+            $data['custom_end_date'] = null;
+        }
+
+        Evaluation::create($data);
 
         Inertia::flash('toast', ['type' => 'success', 'message' => __('Evaluation created.')]);
 
@@ -104,7 +113,18 @@ class EvaluationController extends Controller
      */
     public function update(UpdateEvaluationRequest $request, Evaluation $evaluation): RedirectResponse
     {
-        $evaluation->update($request->validated());
+        $data = $request->validated();
+
+        if (isset($data['custom_start_date']) && isset($data['custom_end_date'])) {
+            $data['evaluation_date'] = $data['custom_start_date'];
+            $data['period_id'] = null;
+        } else {
+            $data['evaluation_date'] = now()->toDateString();
+            $data['custom_start_date'] = null;
+            $data['custom_end_date'] = null;
+        }
+
+        $evaluation->update($data);
 
         Inertia::flash('toast', ['type' => 'success', 'message' => __('Evaluation updated.')]);
 
